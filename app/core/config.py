@@ -14,3 +14,12 @@ class Settings(BaseSettings):
     
     app_env: str = "development"
     image_corpus_dir: str = "data/images"
+    
+    app_env: str = "development"
+    image_corpus_dir: str = "data/images"
+    
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+    )
