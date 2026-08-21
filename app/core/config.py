@@ -11,3 +11,6 @@ class Settings(BaseSettings):
     postgres_db: str
     postgres_user: str
     postgres_password: str
+    
+    app_env: str = "development"
+    image_corpus_dir: str = "data/images"
