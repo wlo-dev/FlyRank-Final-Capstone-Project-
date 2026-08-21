@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # pipeline can't function without knowing where Ollama lives.
     ollama_base_url: str
     ollama_vision_model: str
-    ollam_embed_model: str
+    ollama_embed_model: str
     
     # --- Postgres ---
     # Required: a missing/wrong DB credential should fail loudly
