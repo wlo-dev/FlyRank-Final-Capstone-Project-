@@ -1,0 +1,3 @@
+service:
+postgress:
+image: postgress:16  # this tells docker which prebuilt image to pull and run
