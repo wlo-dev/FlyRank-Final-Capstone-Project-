@@ -1,7 +1,9 @@
 service:
  postgress:
-   image: postgress:16  # this tells docker which prebuilt image to pull and run
+   image: postgress:16  # this tells docker which pre-built image to pull and run
 environment:         #Tells docker compose to set environment variables inside the container when it starts
   POSTGRESS_USER: ${POSTGRES_USER}
   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   POSTGRESS_DB: ${POSTGRES_DB}
+ports:
+- "5432:5432"
