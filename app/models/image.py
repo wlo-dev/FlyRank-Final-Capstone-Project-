@@ -31,6 +31,6 @@ class Image(Base):
     caption: Mapped[str] = mapped_column(Text, nullable=True)
     embedding: Mapped[list[float]] = mapped_column(Vector(384), nullable=True)
     
-    create_at: Mapped[datetime] = mapped_column(
+    created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
