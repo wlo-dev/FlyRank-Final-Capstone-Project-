@@ -29,3 +29,4 @@ class Image(Base):
     
     filepath: Mapped[str] = mapped_column(String(500), nullable=False)
     caption: Mapped[str] = mapped_column(Text, nullable=True)
+    embedding: Mapped[list[float]] = mapped_column(Vector(384), nullable=True)
