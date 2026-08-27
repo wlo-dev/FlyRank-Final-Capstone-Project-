@@ -18,4 +18,4 @@ class ImageRepository:
         return self.db.get(Image, image_id)
     
     def get_all(self) -> list[Image]:
-        return list(self.db.execute(select(Image)).scalar().all())
+        return list(self.db.execute(select(Image)).scalars().all())
