@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-
+from sqlalchemy import select
 from app.models.image import Image
 
 
@@ -16,3 +16,6 @@ class ImageRepository:
     
     def get_by_id(self, image_id: int) -> Image | None:
         return self.db.get(Image, image_id)
+    
+    def get_all(self) -> list[Image]:
+        return list(self.db.execute(select(Image)).scalar().all())
