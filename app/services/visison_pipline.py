@@ -26,7 +26,7 @@ def generate_caption(image_path: Path) -> str:
     return response["message"]["content"].strip()
 
 
-def generate_embedding(text: str) -> list[float]:
+def generate_embedding(text: str) -> list[float]: ## this functions purpose is built for  embedding models/ just converts  text to numbers.
     response = ollama.embed(
         model=settings.ollama_embed_model,
         input=text,
