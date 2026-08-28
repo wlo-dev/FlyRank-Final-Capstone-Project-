@@ -24,3 +24,11 @@ def generate_caption(image_path: Path) -> str:
         ],
     )
     return response["message"]["content"].strip()
+
+
+def generate_embedding(text: str) -> list[float]:
+    response = ollama.embed(
+        model=settings.ollama_embed_model,
+        input=text,
+    )
+    return response["embeddings"][0]
