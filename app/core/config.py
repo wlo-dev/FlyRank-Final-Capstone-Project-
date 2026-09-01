@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     ollama_base_url: str
     ollama_vision_model: str
     ollama_embed_model: str
-    
+        
     # --- Postgres ---
     # Required: a missing/wrong DB credential should fail loudly
     # at startup, not silently break a query three files later.
