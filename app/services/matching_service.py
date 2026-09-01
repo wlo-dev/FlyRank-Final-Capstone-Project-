@@ -11,5 +11,13 @@ def find_best_matches(db: Session, blog_text: str, top_k: int = 3):
     
     
     result = db.execute(
-        
-    )
+        select(
+            Image,
+            Image.embedding.cosine_distance(query_embedding).label("distance"),
+        )
+        .order_by("distance")
+        .limit(top_k)
+
+    ).all()
+    
+    return results
