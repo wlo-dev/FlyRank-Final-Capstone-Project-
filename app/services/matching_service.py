@@ -7,10 +7,10 @@ from app.services.vision_pipeline import generate_embeddings
 
 
 def find_best_matches(db: Session, blog_text: str, top_k: int = 3):
-    query_embedding = generate_embedding(blog_text)
+    query_embedding = generate_embeddings(blog_text)
     
     
-    result = db.execute(
+    results = db.execute(
         select(
             Image,
             Image.embedding.cosine_distance(query_embedding).label("distance"),
