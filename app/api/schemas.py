@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 class MatchRequest(BaseModel):
-    user_id: int
     blog_text: str
     top_k: int = 3
     
@@ -17,5 +16,5 @@ class MatchRequest(BaseModel):
     class ImageSummary(BaseModel):
         id: int
         filename: str
-        caption: str | None
+        caption: str| None
     
