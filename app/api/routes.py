@@ -10,3 +10,8 @@ from app.services.matching_service import find_match_with_guard
 from app.api.schemas import MatchRequest, MatchResponse, MatchResult, ImageSummary
 
 router = APIRouter()
+
+
+@router.get("/health")
+def health_check():
+    return {"status": "ok"}
