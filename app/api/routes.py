@@ -27,7 +27,7 @@ def list_images(db: Session = Depends(get_db)):
 
 @router.post("/match", response_model=MatchResponse)
 def match_blog_post(request: MatchRequest, db: Session = Depends(get_db)):
-    result = find_match_with_guard(request.blog_text, request.top_k)
+    result = find_match_with_guard(db, request.blog_text, request.top_k)
     
     matches = [
         MatchResult(filename=image.filename, caption=image.caption, distance=distance)
