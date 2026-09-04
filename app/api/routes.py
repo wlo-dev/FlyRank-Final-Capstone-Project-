@@ -1,12 +1,8 @@
-from turtle import distance
-
-from fastapi import APIRouter, Depends
+﻿from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-
 from app.db.session import get_db
-from app.models import image
 from app.models.image import Image
 from app.repositories.image_repository import ImageRepository
 from app.services.matching_service import find_match_with_guard
@@ -19,20 +15,21 @@ router = APIRouter()
 def health_check():
     return {"status": "ok"}
 
+
 @router.get("/images", response_model=list[ImageSummary])
 def list_images(db: Session = Depends(get_db)):
     repo = ImageRepository(db)
     images = repo.get_all()
     return images
 
+
 @router.post("/match", response_model=MatchResponse)
 def match_blog_post(request: MatchRequest, db: Session = Depends(get_db)):
-    result = find_match_with_guard(db, request.blog_text, request.top_k)
-    
+    results = find_match_with_guard(db, request.blog_text, request.top_k)
+
     matches = [
         MatchResult(filename=image.filename, caption=image.caption, distance=distance)
         for image, distance in results
-        
     ]
-    
-    return MatchResponse(matches=matches, matched=bool(matches) > 0)
+
+    return MatchResponse(matches=matches, matched=len(matches) > 0)
