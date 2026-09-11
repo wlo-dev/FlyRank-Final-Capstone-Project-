@@ -64,7 +64,22 @@
             });
 
             const data = await response.json();
-            console.log(data);
+          resultsDiv.innerHTML = "";
+
+if (!data.matched) {
+    resultsDiv.innerHTML = "<p>No confident match found.</p>";
+} else {
+    data.matches.forEach((match) => {
+        const card = document.createElement("div");
+        card.className = "match-card";
+        card.innerHTML = `
+            <strong>${match.filename}</strong>
+            <p>${match.caption}</p>
+            <small>Distance: ${match.distance.toFixed(4)}</small>
+        `;
+        resultsDiv.appendChild(card);
+    });
+}
         });
     </script>
 </body>

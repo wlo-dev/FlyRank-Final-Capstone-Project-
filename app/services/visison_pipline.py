@@ -32,3 +32,11 @@ def generate_embedding(text: str) -> list[float]: ## this functions purpose is b
         input=text,
     )
     return response["embeddings"][0]
+
+
+def run_pipeline():
+     db = SessionLocal()
+     repo = ImageRepository(db)
+     
+     image_files = get_image_files()
+     print(f"Found {len(image_files)}")
