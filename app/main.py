@@ -5,4 +5,11 @@ from app.api.routes import router
 
 app = FastAPI(title="FlyRank Image Relevance Engine")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 app.include_router(router)
