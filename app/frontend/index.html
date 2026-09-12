@@ -4,50 +4,142 @@
     <meta charset="UTF-8">
     <title>FlyRank Image Relevance Engine</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, san-serif;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+            color: #1e293b;
         }
 
         h1 {
             text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 32px;
+            font-size: 15px;
+        }
+
+        .input-panel {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
         }
 
         textarea {
             width: 100%;
             height: 100px;
-            font-size: 16px;
-            padding: 10px;
-            box-sizing: border-box;
+            font-size: 15px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
         button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2563eb;
+            margin-top: 14px;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
             color: white;
             border: none;
-            
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
         }
 
         button:hover {
-            background-color: #1e4ed8;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+            transform: translateY(-1px);
+        }
+
+        #results {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+            transition: transform 0.15s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .match-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 14px 16px;
+        }
+
+        .card-content strong {
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        .card-content p {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.4;
+            margin: 6px 0;
+        }
+
+        .card-content small {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .no-match {
+            text-align: center;
+            color: #64748b;
+            padding: 30px;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
 <body>
-
     <h1>FlyRank Image Relevance Engine</h1>
-    <textarea id="blogText" placeholder="Paste your blog post text here..."></textarea>
-    <br>
-    <button id="matchButton">Find Matching Images</button> 
+    <p class="subtitle">AI-powered semantic matching between blog content and images</p>
 
-        <div id="results"></div>
+    <div class="input-panel">
+        <textarea id="blogText" placeholder="Paste your blog post text here..."></textarea>
+        <br>
+        <button id="matchButton">Find Matching Images</button>
+    </div>
+
+    <div id="results"></div>
 
     <script>
         const button = document.getElementById("matchButton");
@@ -64,24 +156,27 @@
             });
 
             const data = await response.json();
-          resultsDiv.innerHTML = "";
 
-if (!data.matched) {
-    resultsDiv.innerHTML = "<p>No confident match found.</p>";
-} else {
-    data.matches.forEach((match) => {
-        const card = document.createElement("div");
-        card.className = "match-card";
-        card.innerHTML = `
-            <strong>${match.filename}</strong>
-            <p>${match.caption}</p>
-            <small>Distance: ${match.distance.toFixed(4)}</small>
-        `;
-        resultsDiv.appendChild(card);
-    });
-}
+            resultsDiv.innerHTML = "";
+
+            if (!data.matched) {
+                resultsDiv.innerHTML = '<p class="no-match">No confident match found.</p>';
+            } else {
+                data.matches.forEach((match) => {
+                    const card = document.createElement("div");
+                    card.className = "match-card";
+                    card.innerHTML = `
+                        <img src="http://127.0.0.1:8000/static-images/${match.filename}" alt="${match.filename}">
+                        <div class="card-content">
+                            <strong>${match.filename}</strong>
+                            <p>${match.caption}</p>
+                            <small>Distance: ${match.distance.toFixed(4)}</small>
+                        </div>
+                    `;
+                    resultsDiv.appendChild(card);
+                });
+            }
         });
     </script>
 </body>
 </html>
-
