@@ -6,7 +6,7 @@ An AI-powered backend service that semantically matches blog post content to the
 
 **Video walkthrough:**
 
-[Add your demo video link here, e.g. a Loom, YouTube, or LinkedIn video URL]
+[https://github.com/wlo-dev/FlyRank-Final-Capstone-Project-/blob/main/docs/demo/flyrank-demo.mp4]
 
 **Screenshots:**
 
