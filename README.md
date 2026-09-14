@@ -6,7 +6,7 @@ An AI-powered backend service that semantically matches blog post content to the
 
 **Video walkthrough:**
 
-[https://github.com/wlo-dev/FlyRank-Final-Capstone-Project-/blob/main/docs/demo/flyrank-demo.mp4]
+[https://raw.githubusercontent.com/wlo-dev/FlyRank-Final-Capstone-Project-/main/docs/demo/flyrank-demo.mp4]
 
 **Screenshots:**
 
