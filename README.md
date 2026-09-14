@@ -6,7 +6,9 @@ An AI-powered backend service that semantically matches blog post content to the
 
 **Video walkthrough:**
 
-[https://raw.githubusercontent.com/wlo-dev/FlyRank-Final-Capstone-Project-/main/docs/screenshots/FlyRank%20Image%20Relevance%20Engine%20Demo.mp4]
+
+
+Uploading FlyRank Image Relevance Engine Demo (1).mp4…
 
 **Screenshots:**
 
