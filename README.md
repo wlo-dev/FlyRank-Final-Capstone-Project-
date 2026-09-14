@@ -168,7 +168,7 @@ An AI-powered backend service that semantically matches blog post content to the
 
 | Input | Matched Results |
 |-------|------------------|
-| ![Input screenshot](PASTE_SCREENSHOT_PATH_HERE.png) | ![Results screenshot](PASTE_SCREENSHOT_PATH_HERE.png) |
+| ![Input screenshot](docs/screenshots/input-screenshot.png) | ![Results screenshot](docs/screenshots/output-screenshot.png) |
 
 *(Replace the paths above with actual screenshot files — e.g. save them in a `docs/screenshots/` folder in your repo and reference them like `docs/screenshots/demo-1.png`)*
 
